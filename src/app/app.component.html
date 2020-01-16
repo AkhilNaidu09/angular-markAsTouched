@@ -1,0 +1,22 @@
+<hello name="{{ name }}"></hello>
+<p>
+	Start editing to see some magic happen :)
+</p>
+
+<form name="form" #f="ngForm" (ngSubmit)="save(f,cvFile);">
+	<div class="form-group col-md-6 pt-3">
+		<label>Name</label>
+		<input type="text" required name="name" #nameU="ngModel" [(ngModel)]="signupModel.name" />
+    	<div *ngIf="nameU.invalid && nameU.touched">
+				<div class="error-msg">name is required</div>
+			</div>
+  </div>
+		<div class="form-group col-md-6 pt-3">
+			<label>Upload CV</label>
+			<input type="file" required name="userCv" #cvFile="ngModel" [(ngModel)]="signupModel.cvFile" (change)="selectCvFile($event)" />
+			<div *ngIf="cvFile.invalid && cvFile.touched">
+				<div class="error-msg">Cv is required</div>
+			</div>
+		</div>
+		<button type="submit"> Save</button>
+</form>
